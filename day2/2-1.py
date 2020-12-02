@@ -1,28 +1,24 @@
 import fileinput
-import itertools
 
 validCount = 0
 expenseReportEntries = []
 
 with fileinput.input(files=('input.txt')) as f:
     for line in f:
-        splitLineArray = line.split()
+        minMaxSubString, validationString, password = line.split()
 
-        minMaxSubString = splitLineArray[0]
-        hyphenPosition = minMaxSubString.find('-')
-        minTimesToUseLetter = int(minMaxSubString[:hyphenPosition])
-        maxTimesToUseLetter = int(minMaxSubString[hyphenPosition+1:])
+        minTimesToUseLetter, maxTimesToUseLetter = (
+            int(x) for x in minMaxSubString.split('-')
+        )
 
-        validationLetter = splitLineArray[1][0]
-        password = splitLineArray[2]
-
+        validationLetter = validationString[0]
         letterUsageCount = 0
 
         for letter in password:
             if letter == validationLetter:
                 letterUsageCount += 1
 
-        if minTimesToUseLetter <= letterUsageCount <= maxTimesToUseLetter:
+        if int(minTimesToUseLetter) <= letterUsageCount <= int(maxTimesToUseLetter):
             validCount += 1
 
     print(validCount)
