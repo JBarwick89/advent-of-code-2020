@@ -1,7 +1,6 @@
 import fileinput
 
 validCount = 0
-expenseReportEntries = []
 
 with fileinput.input(files=('input.txt')) as f:
     for line in f:
