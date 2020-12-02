@@ -17,7 +17,7 @@ with fileinput.input(files=('input.txt')) as f:
             if letter == validationLetter:
                 letterUsageCount += 1
 
-        if int(minTimesToUseLetter) <= letterUsageCount <= int(maxTimesToUseLetter):
+        if minTimesToUseLetter <= letterUsageCount <= maxTimesToUseLetter:
             validCount += 1
 
     print(validCount)
